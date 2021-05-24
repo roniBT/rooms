@@ -1,0 +1,603 @@
+{listOfDevices.map((item, index) => ( <button className="deviceButton" style={{ backgroundColor: deviceStateColor }} onClick={() =>{turnOnOff()}} key={index} >{item}</button>) )}  
+
+
+
+
+
+homePageButtons: 
+import React, {useState} from "react";
+import { Link } from "react-router-dom";
+import RoomSelection from "./RoomSelection";
+// import Rooms from "./Rooms";
+
+export default function HomePageButtons() {
+
+  const [showAddRoom, setShowAddRoom] = useState(false);
+
+  const changeStateAddRoom = () => {
+    setShowAddRoom(!showAddRoom);
+  }
+
+  const openCloseAddRoom = () => {
+    if (showAddRoom === false) {
+      return;
+    } else {
+      return <RoomSelection close={changeStateAddRoom} />
+    }
+  }
+
+  return (
+    <div>
+      <Link to="/Rooms">
+        <button className="MyRoomsButton">My Rooms</button>
+      </Link>
+      <br />
+      <Link to="/RoomSelection">
+        <button onClick={()=>{changeStateAddRoom()}} className="addRoomButton">+</button>
+      </Link>
+      {/* <Rooms/> */}
+
+      {openCloseAddRoom()}
+    </div>
+  );
+}
+
+
+{/* <div className="devices">
+          <h1>{roomName}</h1>
+          <h3> devices:</h3>            
+            <h2> {() => { deviceList() }}</h2>           
+          <br />                           
+      </div> */}
+
+
+
+      {/* <Route exact path="/AddDevices" component={() => {
+            return <AddDevices
+              UpdateRoomDevices={UpdateRoomDevices()} />
+            }}
+          />            */}
+          {/* <Route exact path="/Devices" component={() => {
+            return devices.map((val, index) => {
+              return <Devices
+                device={val.device}
+                id={index}
+                // UpdateRoomDevices={UpdateRoomDevices}
+              
+              />
+
+              
+            })
+          }} /> */}
+
+
+
+// const openRoomDevices = () => {
+  //   if (showDevices === true) {
+  //     return <Devices />;
+  //     // {device.map(item=> {return <Devices device={item} />} )}
+  //   }
+  // };
+  // const OpenDevices = () => {
+  //   setShowDevices(!showDevices);
+  // };
+
+
+
+Devices: // import React, { useState } from "react";
+
+// export default function Devices(props) {
+
+//     const [listOfDevices, setListOfDevices] = useState([]);
+//     const [deviceName, setDeviceName] = useState([props.devices]);
+//     const [deviceState, setDeviceState] = useState(false);
+//     const [deviceStateColor, setDeviceStateColor] = useState("red");
+
+//     const UpdateRoomDevices = (device) => {
+//         if (deviceName === undefined) {
+//             return;
+//         } else {
+//             setDeviceName(device);
+//             listOfDevices.push(device)
+//             console.log(device);
+//         }
+//     };
+    
+//     const turnOnOff = () => {
+//     setDeviceState(!deviceState);    
+//     }
+    
+//     const followDeviceState = () => {
+//         if (deviceState === false) {
+//             setDeviceStateColor('red');
+//         }
+//         if (deviceState === true) {
+//             setDeviceStateColor('green');
+//         }    
+//     }
+    
+ 
+    
+
+
+//     return (
+//         <div className="RoomsContainer">
+//             <div className="devices"> 
+//             {listOfDevices.map((val) => <button onClick={()=>{turnOnOff()}} className="deviceButton" style={{ backgroundColor: deviceStateColor }} >{val} </button>)}                         
+//             {followDeviceState()}
+//             </div>
+//         </div>
+
+//     );
+// }
+
+
+
+// const index = rooms.findIndex((room) => {
+    //   return room.id === id
+    // });
+
+    // const room = Object.assign({}, rooms[index]);
+    // room.roomChoice = choice;
+    // room.roomName = name;
+    // room.roomColor = color;
+
+    // const Rooms = Object.assign([], rooms);
+    // rooms[index] = room;
+
+    // setRooms(rooms);
+    
+
+// import React, {Component, useState } from "react";
+// import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+// import "./App.css";
+// import HomePage from "./Components/HomePage";
+// import HomePageButtons from "./Components/HomePageButtons";
+// import Rooms from "./Components/Rooms";
+// import Devices from "./Components/Devices";
+// import RoomSelection from "./Components/RoomSelection";
+// import AddDevices from "./Components/AddDevices";
+
+
+// export default class App extends Component {
+
+//     state = {
+//       rooms: [{ devices: ''}],
+      
+//   }
+
+//   AddRoom = (choice,name, color) => {
+//     let newRoom = {
+//       roomChoice: choice,
+//       roomName: name,
+//       roomColor: color,
+//       device: '',
+//     };
+//     this.setState({ rooms: [newRoom, ...this.state.rooms] });
+    
+//     console.log('new room:',newRoom);
+//   };
+
+  
+
+//   UpdateRoomDevices = ( deviceName) => { 
+//     let newDevice = { deviceName: deviceName,};
+//       deviceName.push(newDevice);
+//       console.log(newDevice);
+//     // const index = this.state.rooms.findIndex((room) => {
+//     //   return room.id === id
+//     // });
+//     // const room = Object.assign({}, this.state.rooms[index]);
+    
+//     // room.device = {deviceName};
+
+//     // const rooms = Object.assign([], this.state.rooms);
+//     // rooms[index] = room;
+//     // this.setState({ rooms: rooms });
+//   };
+ 
+//   render() {
+//   return (
+//     <div className="App">
+//       <HomePage />
+//       <Router>
+//       <HomePageButtons />
+//         <Switch>
+//           <Route exact path="/HomePage" component={HomePage}/>
+//           <Route exact path="/RoomSelection" component={() => {
+//               return <RoomSelection AddRoom={this.AddRoom} />;
+//             }}
+//           />
+//           <Route exact path="/Rooms" component={() => {
+//               return (this.state.rooms.map((item, index) => {
+//                 return <Rooms
+//                 key={index}
+//                 id={index}
+//                 selected={item.roomChoice}
+//                 name={item.roomName}
+//                 color={item.roomColor}
+//                 deviceName= {item.deviceName}
+//                 // UpdateRoomDevices={this.UpdateRoomDevices}
+//                 AddRoom={this.AddRoom}                  
+//                 />
+//               })
+//               );
+//             }}
+//           />
+//           <Route exact path="/AddDevices" component={() => {
+//             return <AddDevices UpdateRoomDevices={this.UpdateRoomDevices} />
+//           }} />
+//           <Route
+//             exact
+//             path="/Devices"
+//             component={() => {             
+//               return <Devices
+//               UpdateRoomDevices={this.UpdateRoomDevices}              
+//               />
+//             }}            
+//           />
+//         </Switch>
+//       </Router>
+//     </div>
+//   );}
+// };
+
+// import React, { useState } from "react";
+// import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+// import "./App.css";
+// import HomePage from "./Components/HomePage";
+// import HomePageButtons from "./Components/HomePageButtons";
+// import Rooms from "./Components/Rooms";
+// import Devices from "./Components/Devices";
+// import RoomSelection from "./Components/RoomSelection";
+// import AddDevices from "./Components/AddDevices";
+
+// function App() {
+//   const rooms = [];
+//   let devices = [];
+
+//   const AddRoom = (choice, name, color, id) => {
+//     let newRoom = {
+//       roomChoice: choice,
+//       roomName: name,
+//       roomColor: color,
+//       roomId: {id},
+//     };
+//     rooms.push(newRoom);
+//     console.log(newRoom);
+//   };
+
+//   const UpdateRoomDevices = (deviceName, id) => {
+//     let newDevice = {
+//       deviceName: deviceName,
+//       deviceId: id
+//     };
+//     devices.push(newDevice);
+//     console.log(newDevice);
+//   };
+
+//   return (
+//     <div className="App">
+//       <HomePage />
+//       <br/>
+//       <Router>
+//         <br/>
+//         <HomePageButtons />
+//         <rooms/>
+//         <Switch>
+//           <Route exact path="/HomePage" component={HomePage}/>
+//           <Route
+//             exact
+//             path="/RoomSelection"
+//             component={() => {
+//               return <RoomSelection AddRoom={AddRoom} />;
+//             }}
+//           />
+//           <Route
+//             exact
+//             path="/Rooms"
+//             component={() => {
+//               return (rooms.map((val, index) => {
+//                 return <Rooms
+//                   selected={val.roomChoice}
+//                   name={val.roomName}
+//                   color={val.roomColor}
+//                   id={index}
+//                   deviceName={val.deviceName}
+//                   UpdateRoomDevices={UpdateRoomDevices}
+
+//                 />
+//               })
+//               );
+//             }}
+//           />
+//           <Route exact path="/AddDevices" component={() => {
+//             return <AddDevices UpdateRoomDevices={UpdateRoomDevices.bind(AddRoom)} />
+//           }} />
+//           <Route
+//             exact
+//             path="/Devices"
+//             component={() => {
+//               return (devices.map((value, index) => {
+//                 return <Devices
+//                   deviceName={value.deviceName}
+//                   id={value.index}
+//                   // roomName = {value.rooms.name}
+//                   UpdateRoomDevices={UpdateRoomDevices}
+
+//                 />
+//               })
+//               );
+//             }}
+//           />
+//         </Switch>
+//       </Router>
+//     </div>
+//   );
+// }
+
+// export default App;
+
+
+
+
+          {/* <Route exact path="/StamComponenta" component={StamComponenta} /> */}
+          
+          
+
+          {/* {roomsList.map((val) => {
+            return  <Route exact path={`/${val.roomChoice}`} render={() => { return <Rooms                                
+                  selected={val.roomChoice}
+                  name={val.roomName}
+                  color={val.roomColor}
+                  devices={val.devices} 
+                  // AddRoom={AddRoom}
+               />              
+            }} />}
+          )}; */}
+
+          {/* {rooms.map((val) => {
+            return <Route exact path={`/${val.name}`} component={()=>{return <RoomSelected name={val.name} />}}/>
+          })} */}
+
+          {/* <Route exact path={`/${rooms.name}`} component={() => { return <RoomsPlusDevices roomName={val.roomChoiceroomName}/>}}/> */}
+
+          {/* <Route exact path="/RoomsPlusDevices" component={() => {
+            return rooms.map((val, index) => (                
+              <RoomsPlusDevices
+                    key={index}                    
+                    id={index}
+                    selected={val.roomChoice}
+                    name={val.roomName}
+                    color={val.roomColor}
+                    devices={val.devices}                    
+                    />           
+                    )
+              );
+            }} />  */}
+
+
+
+
+
+
+
+              const turnOnOff = (id) => {
+    if (deviceName === 'AC') {
+      setDeviceACState(!deviceACState);  
+      if (deviceACState === true) {
+        setACStateColor('green');
+        console.log('device on!!!');
+      }
+      if (deviceACState === false) {
+        setACStateColor('red');      
+      }
+      console.log(id,'device OFF!!!');      
+    }
+    if (deviceName === 'Lamp') {
+      setDeviceLampState(!deviceLampState);  
+      if (deviceLampState === true) {
+        setLampStateColor('green');
+        console.log('device on!!!');
+      }
+      if (deviceLampState === false) {
+        setLampStateColor('red');      
+      }
+      console.log(id,'device OFF!!!');      
+    }
+    if (deviceName === 'Stereo') {
+      setDeviceStereoState(!deviceStereoState);  
+      if (deviceStereoState === true) {
+        setStereoStateColor('green');
+        console.log('device on!!!');
+      }
+      if (deviceStereoState === false) {
+        setStereoStateColor('red');      
+      }
+      console.log(id,'device OFF!!!');      
+    }
+    if (deviceName === 'Boiler') {
+      setDeviceBoilerState(!deviceBoilerState);  
+      if (deviceBoilerState === true) {
+        setBoilerStateColor('green');
+        console.log('device on!!!');
+      }
+      if (deviceBoilerState === false) {
+        setBoilerStateColor('red');      
+      }
+      console.log(id,'device OFF!!!');      
+    }
+  };
+
+
+  import React, {useState} from "react";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import "./App.css";
+import logo from "./img/smartHouseLOGO.png";
+import Rooms from "./Components/Rooms";
+import RoomSelection from "./Components/RoomSelection";
+import RoomMenu from "./Components/RoomMenu";
+import AddDevices from "./Components/AddDevices";
+
+function App() {
+
+  // const [roomType, setRoomType] = useState(''); 
+  // const [roomName, setRoomName] = useState('');
+  // const [roomColor, setRoomColor] = useState(''); 
+  // const [roomDevices, setRoomDevices] = useState([]);
+  // const [newRoom, setNewRoom] = useState([]);    
+  const [roomsList, setRoomsList] = useState([]); 
+  const deviceName = roomsList.deviceName;
+  const seviceStatus = roomsList.status;
+  // const [roomDevices, setRoomDevices] = useState([]);
+
+
+  const CreateRoom = (type, name, color) => {
+
+    let newRoom = {
+      roomType: type,
+      roomName: name,
+      roomColor: color,
+      roomDevices: [{deviceName:'add devices', status: ''}],     
+    };
+    roomsList.push(newRoom);
+    
+    console.log(type, name, color); 
+    console.log(newRoom);   
+  };
+    
+  // const AddRoom = () => {
+      
+  //   // setNewRoom({roomType, roomName, roomColor, roomDevices});
+  //   // roomsList.push(newRoom);
+  // };
+
+  const RoomDeviceList = (device) => {
+
+    deviceName.push(device);
+    seviceStatus = false;
+    // setRoomsList({roomDevices:[{...roomDevices, }] })
+    // let newdevice = {
+    //   device: device,
+    // }
+    // device.push(newdevice);
+
+    // for (let i = 0; i < rooms.length; i++) {
+    //   if (i === id) {
+    //     // let currentRoom = rooms[i];
+    //     // currentRoom.devices.push(deviceList);
+    //     // setRooms(...rooms, )
+    //   }
+
+    // }
+    
+    // // rooms.devices.push(deviceList);  
+
+    // console.log('room with devices:',rooms);
+  }
+
+  
+
+  return (
+    <Router>        
+      <div className="App">
+        <div className="title"><Link to="/"> <img src={logo} alt="logo" /></Link></div>
+        
+        
+        <Route exact path="/RoomSelection" component={() => { return <RoomSelection CreateRoom={CreateRoom} /> }} />   
+        
+        <div className="title"><Link to="/RoomSelection"><button className="addRoomButton">+</button></Link></div>  
+        <Switch>
+          
+          <Route exact path="/RoomMenu" component={() => {
+            return (roomsList.map((val,index) => (                
+              <RoomMenu 
+                key={index}                    
+                id={index}    
+                selected={val.roomType}
+                name={val.roomName}
+                color={val.roomColor}                                 
+                />           
+                ))
+              );
+            }}
+          />
+
+
+          <Route exact path="/Rooms" component={() => {
+            return (roomsList.map((val, index) => (                
+              <Rooms  
+              key={index}                    
+              id={index}  
+              selected={val.roomType}
+              name={val.roomName}
+              color={val.roomColor}
+              RoomDeviceList={RoomDeviceList}
+              />      
+                          
+              ))
+              );
+            }}
+            />  
+
+            {/* <Route exact path="/AddDevices" component={()=>{return <AddDevices RoomDeviceList={RoomDeviceList} />}}/> */}
+          {/* <Route exact path="/StamComponenta" component={StamComponenta} /> */}
+          
+          
+
+          {/* {roomsList.map((val) => {
+            return  <Route exact path={`/${val.roomChoice}`} render={() => { return <Rooms                                
+                  selected={val.roomChoice}
+                  name={val.roomName}
+                  color={val.roomColor}
+                  devices={val.devices} 
+                  // AddRoom={AddRoom}
+               />              
+            }} />}
+          )}; */}
+
+          {/* {rooms.map((val) => {
+            return <Route exact path={`/${val.name}`} component={()=>{return <RoomSelected name={val.name} />}}/>
+          })} */}
+
+          {/* <Route exact path={`/${rooms.name}`} component={() => { return <RoomsPlusDevices roomName={val.roomChoiceroomName}/>}}/> */}
+
+          {/* <Route exact path="/RoomsPlusDevices" component={() => {
+            return rooms.map((val, index) => (                
+              <RoomsPlusDevices
+                    key={index}                    
+                    id={index}
+                    selected={val.roomChoice}
+                    name={val.roomName}
+                    color={val.roomColor}
+                    devices={val.devices}                    
+                    />           
+                    )
+              );
+            }} />  */}
+        </Switch>
+      </div>
+    </Router>
+  )
+}
+
+export default App;
+
+ // setRoomType(type);
+    // setRoomName(name);
+    // setRoomColor(color);
+    // setRoomDevices(['add devices']); 
+    
+    // AddRoom();
+    
+    // let newRoom = {
+      //   roomChoice: type,
+      //   roomName: name,
+      //   roomColor: color,
+      //   devices:  [],
+      // };    
+      // rooms.push(newRoom);
+      // roomsList.push(newRoom)
+      
+      
+      // console.log(roomsList); 
